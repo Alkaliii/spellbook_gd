@@ -7,7 +7,7 @@ This repository contains shaders for creating VFX alongside demonstrations and a
 I am bad at writing code and even worse with shaders, please excuse all the poor/unoptimal implementations.
 
 ## What can I use?
-This repo is [MIT Licensed](https://github.com/Alkaliii/spellbook_gd/blob/master/LICENSE), but some parts may fall under other licenses. But more or less, you can use everything you find here in accordance to the license.
+This repo is [MIT Licensed](https://github.com/Alkaliii/spellbook_gd/blob/master/LICENSE), but some parts may fall under other licenses. But more or less, you can use everything you find here in accordance to their respective license (which should be MIT).
 Credits are appreciated but not necessary.
 
 ## Index
