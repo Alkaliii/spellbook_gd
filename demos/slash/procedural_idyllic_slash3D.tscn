@@ -1,0 +1,1359 @@
+[gd_scene load_steps=80 format=3 uid="uid://bxnuo0bdwad7x"]
+
+[ext_resource type="PackedScene" uid="uid://bcltoqgvpk4xm" path="res://demos/other/vfx_env_spatial.tscn" id="1_iiakc"]
+[ext_resource type="Shader" uid="uid://cfbde6ea4o52" path="res://assets/shaders/ps_Idyllic.gdshader" id="2_02mbb"]
+[ext_resource type="PackedScene" uid="uid://bitg173d813q5" path="res://src/scenes/mage.tscn" id="2_deeq0"]
+[ext_resource type="Script" uid="uid://unth20mj765s" path="res://src/schema/bulk_shader_override.gd" id="3_5iu0q"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_02mbb"]
+noise_type = 2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5iu0q"]
+noise = SubResource("FastNoiseLite_02mbb")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_deeq0"]
+colors = PackedColorArray(0.2784314, 0.101960786, 0.8235294, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lwwih"]
+gradient = SubResource("Gradient_deeq0")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3o0w7"]
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w1u3x"]
+noise = SubResource("FastNoiseLite_3o0w7")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_q8602"]
+offsets = PackedFloat32Array(0, 0.1, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1x67a"]
+gradient = SubResource("Gradient_q8602")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_lwwih"]
+offsets = PackedFloat32Array(0, 0.5852018)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3o0w7"]
+gradient = SubResource("Gradient_lwwih")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5iu0q"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 0
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_1x67a")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_w1u3x")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 0.6000000536443197
+shader_parameter/scroll_distortion = Vector4(0.2, -0.5, 0, -0.5)
+shader_parameter/scale_distortion = Vector4(0.3, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/distort_str_driver = 5
+shader_parameter/distort_scroll_driver = 2
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 6
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(0, 0, 0, 0)
+shader_parameter/base_scale_if = Vector4(0.5, 1, 1, 1)
+shader_parameter/base_pos_driver = 0
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = 0.109
+shader_parameter/feather_falloff = 1
+shader_parameter/feather_falloff_control = Vector3(0.1, 0.5, 0.5)
+shader_parameter/base_energy = Vector2(1, 1)
+shader_parameter/base_energy_driver = 0
+shader_parameter/base_mask = SubResource("NoiseTexture2D_5iu0q")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(1, 1)
+shader_parameter/base_mask_edge = Vector4(0, 0.01, 0, 1)
+shader_parameter/base_mask_scroll = Vector4(0.4, 0, 0, 0)
+shader_parameter/base_mask_scale = Vector4(1, 1, 1, 1)
+shader_parameter/bm_pow_driver = 0
+shader_parameter/bm_edge_driver = 6
+shader_parameter/bm_scroll_driver = 2
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 2
+shader_parameter/bmag_edge = Vector4(-0.5, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 4
+shader_parameter/base_scale_anim_driver = 6
+shader_parameter/color_gradient = SubResource("GradientTexture1D_lwwih")
+shader_parameter/emission_intensity = 3.0000000447036004
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(0.5, -0.25)
+shader_parameter/sample_edge_pow = Vector3(0, 3, 1)
+shader_parameter/shift_gradient_driver = 5
+shader_parameter/gradient_bias = 5
+shader_parameter/gbias_edge = Vector4(0, 1, 0.5, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, -0.25)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 4
+shader_parameter/gb_str_driver = 5
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 1
+shader_parameter/chroma_samples = 10
+shader_parameter/chroma_offset = Vector2(0.035, -0.2)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 4.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rot_with = 2
+shader_parameter/vertex_displacement_mask = SubResource("GradientTexture2D_3o0w7")
+shader_parameter/vertex_displacement_str = Vector3(0, 0, 0.25)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_deeq0"]
+size = Vector2(3, 3)
+subdivide_width = 30
+subdivide_depth = 30
+
+[sub_resource type="Gradient" id="Gradient_02mbb"]
+offsets = PackedFloat32Array(0.75, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 0.83137256, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5iu0q"]
+gradient = SubResource("Gradient_02mbb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_deeq0"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 0
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_1x67a")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_w1u3x")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 0.20000004768384017
+shader_parameter/scroll_distortion = Vector4(0.2, -0.5, 0, -0.5)
+shader_parameter/scale_distortion = Vector4(0.3, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/distort_str_driver = 5
+shader_parameter/distort_scroll_driver = 2
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 6
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(0.005, 0, 0, 0)
+shader_parameter/base_scale_if = Vector4(0.125, 1, 1, 1)
+shader_parameter/base_pos_driver = 0
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = 0.2
+shader_parameter/feather_falloff = 2
+shader_parameter/feather_falloff_control = Vector3(0.1, 0.5, 0.5)
+shader_parameter/base_energy = Vector2(1, 0)
+shader_parameter/base_energy_driver = 4
+shader_parameter/base_mask = SubResource("NoiseTexture2D_5iu0q")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(0.1, 1)
+shader_parameter/base_mask_edge = Vector4(0, 0.01, 0, 1)
+shader_parameter/base_mask_scroll = Vector4(0.4, 0, 0, 0)
+shader_parameter/base_mask_scale = Vector4(1, 1, 1, 1)
+shader_parameter/bm_pow_driver = 0
+shader_parameter/bm_edge_driver = 6
+shader_parameter/bm_scroll_driver = 2
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 2
+shader_parameter/bmag_edge = Vector4(-0.5, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 4
+shader_parameter/base_scale_anim_driver = 6
+shader_parameter/color_gradient = SubResource("GradientTexture1D_5iu0q")
+shader_parameter/emission_intensity = 16.0
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(0.5, -0.25)
+shader_parameter/sample_edge_pow = Vector3(0, 3, 1)
+shader_parameter/shift_gradient_driver = 5
+shader_parameter/gradient_bias = 2
+shader_parameter/gbias_edge = Vector4(-1, 1, 0.5, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, 0)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 4
+shader_parameter/gb_str_driver = 0
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 0
+shader_parameter/chroma_samples = 10
+shader_parameter/chroma_offset = Vector2(0.035, 0.2)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 4.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rot_with = 2
+shader_parameter/vertex_displacement_mask = SubResource("GradientTexture2D_3o0w7")
+shader_parameter/vertex_displacement_str = Vector3(0, 0, -0.25)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5iu0q"]
+noise_type = 2
+fractal_type = 0
+cellular_distance_function = 1
+cellular_return_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_deeq0"]
+noise = SubResource("FastNoiseLite_5iu0q")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_3o0w7"]
+offsets = PackedFloat32Array(0.75, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w1u3x"]
+gradient = SubResource("Gradient_3o0w7")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_deeq0"]
+noise_type = 2
+fractal_type = 0
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lwwih"]
+noise = SubResource("FastNoiseLite_deeq0")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_6nask"]
+offsets = PackedFloat32Array(0, 0.1, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qwt1a"]
+gradient = SubResource("Gradient_6nask")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_y2hfn"]
+offsets = PackedFloat32Array(0, 0.5852018)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1fy7b"]
+gradient = SubResource("Gradient_y2hfn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smhv1"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 0
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_qwt1a")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_lwwih")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 0.20000004768384017
+shader_parameter/scroll_distortion = Vector4(0.2, 0.1, 0, 0.1)
+shader_parameter/scale_distortion = Vector4(0.02, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 64)
+shader_parameter/distort_str_driver = 5
+shader_parameter/distort_scroll_driver = 0
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 4
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(0.005, 0, 0, 0)
+shader_parameter/base_scale_if = Vector4(0.125, 1, 1, 1)
+shader_parameter/base_pos_driver = 0
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = 0.4
+shader_parameter/feather_falloff = 0
+shader_parameter/feather_falloff_control = Vector3(0.1, 0.5, 0.5)
+shader_parameter/base_energy = Vector2(1, 0)
+shader_parameter/base_energy_driver = 3
+shader_parameter/base_mask = SubResource("NoiseTexture2D_deeq0")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(1, 1)
+shader_parameter/base_mask_edge = Vector4(0, 0.4, 0, 0.6)
+shader_parameter/base_mask_scroll = Vector4(-0.1, 0, 0, 0)
+shader_parameter/base_mask_scale = Vector4(0.1, 0.1, 1, 1)
+shader_parameter/bm_pow_driver = 0
+shader_parameter/bm_edge_driver = 2
+shader_parameter/bm_scroll_driver = 0
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 2
+shader_parameter/bmag_edge = Vector4(-0.5, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 5
+shader_parameter/base_scale_anim_driver = 4
+shader_parameter/color_gradient = SubResource("GradientTexture1D_w1u3x")
+shader_parameter/emission_intensity = 16.0
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(0.5, -0.25)
+shader_parameter/sample_edge_pow = Vector3(0, 3, 1)
+shader_parameter/shift_gradient_driver = 5
+shader_parameter/gradient_bias = 2
+shader_parameter/gbias_edge = Vector4(-1, 1, 0.5, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, 0)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 6
+shader_parameter/gb_str_driver = 0
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 0
+shader_parameter/chroma_samples = 10
+shader_parameter/chroma_offset = Vector2(0.035, 0.2)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 4.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 45)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, -1)
+shader_parameter/animate_mesh_rot_with = 2
+shader_parameter/vertex_displacement_mask = SubResource("GradientTexture2D_1fy7b")
+shader_parameter/vertex_displacement_str = Vector3(0, 0, -0.25)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q8602"]
+noise = SubResource("FastNoiseLite_deeq0")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_02mbb"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 0
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_qwt1a")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_q8602")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 0.20000004768384017
+shader_parameter/scroll_distortion = Vector4(-0.2, -0.1, 0, -0.1)
+shader_parameter/scale_distortion = Vector4(0.02, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 64)
+shader_parameter/distort_str_driver = 5
+shader_parameter/distort_scroll_driver = 0
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 4
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(0.005, 0, 0, 0)
+shader_parameter/base_scale_if = Vector4(0.125, 1, 1, 1)
+shader_parameter/base_pos_driver = 0
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = 0.4
+shader_parameter/feather_falloff = 0
+shader_parameter/feather_falloff_control = Vector3(0.1, 0.5, 0.5)
+shader_parameter/base_energy = Vector2(1, 0)
+shader_parameter/base_energy_driver = 3
+shader_parameter/base_mask = SubResource("NoiseTexture2D_deeq0")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(1.5, 1)
+shader_parameter/base_mask_edge = Vector4(0, 0.3, 0, 1)
+shader_parameter/base_mask_scroll = Vector4(0.1, 0, 0, 0)
+shader_parameter/base_mask_scale = Vector4(0.1, 0.1, 1, 1)
+shader_parameter/bm_pow_driver = 0
+shader_parameter/bm_edge_driver = 0
+shader_parameter/bm_scroll_driver = 0
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 2
+shader_parameter/bmag_edge = Vector4(-0.5, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 5
+shader_parameter/base_scale_anim_driver = 4
+shader_parameter/color_gradient = SubResource("GradientTexture1D_w1u3x")
+shader_parameter/emission_intensity = 16.0
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(0.5, -0.25)
+shader_parameter/sample_edge_pow = Vector3(0, 3, 1)
+shader_parameter/shift_gradient_driver = 5
+shader_parameter/gradient_bias = 2
+shader_parameter/gbias_edge = Vector4(-1, 1, 0.5, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, 0)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 0
+shader_parameter/gb_str_driver = 0
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 0
+shader_parameter/chroma_samples = 10
+shader_parameter/chroma_offset = Vector2(0.035, 0.2)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 4.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, 0.5)
+shader_parameter/animate_mesh_rot_with = 2
+shader_parameter/vertex_displacement_mask = SubResource("GradientTexture2D_1fy7b")
+shader_parameter/vertex_displacement_str = Vector3(0, 0, -0.25)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_5iu0q"]
+size = Vector2(2.5, 2.5)
+subdivide_width = 30
+subdivide_depth = 30
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lwwih"]
+noise_type = 2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3o0w7"]
+noise = SubResource("FastNoiseLite_lwwih")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_w1u3x"]
+colors = PackedColorArray(0, 0, 0, 0, 0.2784314, 0.101960786, 0.8235294, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q8602"]
+gradient = SubResource("Gradient_w1u3x")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1x67a"]
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6nask"]
+noise = SubResource("FastNoiseLite_1x67a")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_qwt1a"]
+offsets = PackedFloat32Array(0, 0.1, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2hfn"]
+gradient = SubResource("Gradient_qwt1a")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_1fy7b"]
+offsets = PackedFloat32Array(0, 0.5852018)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_smhv1"]
+gradient = SubResource("Gradient_1fy7b")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66cea"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 0
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_y2hfn")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_6nask")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 0.6000000536443197
+shader_parameter/scroll_distortion = Vector4(0.2, -0.5, 0, -0.5)
+shader_parameter/scale_distortion = Vector4(0.3, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/distort_str_driver = 5
+shader_parameter/distort_scroll_driver = 2
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 4
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(-0.05, 0, 0, 0)
+shader_parameter/base_scale_if = Vector4(0.075, 1, 1, 1)
+shader_parameter/base_pos_driver = 0
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = 2.0
+shader_parameter/feather_falloff = 0
+shader_parameter/feather_falloff_control = Vector3(0.1, 0.2, 32)
+shader_parameter/base_energy = Vector2(0.6, 1)
+shader_parameter/base_energy_driver = 0
+shader_parameter/base_mask = SubResource("NoiseTexture2D_3o0w7")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(0.1, 1)
+shader_parameter/base_mask_edge = Vector4(0, 0.01, 0, 1)
+shader_parameter/base_mask_scroll = Vector4(0.4, 0, 0, 0)
+shader_parameter/base_mask_scale = Vector4(1, 1, 1, 1)
+shader_parameter/bm_pow_driver = 0
+shader_parameter/bm_edge_driver = 6
+shader_parameter/bm_scroll_driver = 2
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 2
+shader_parameter/bmag_edge = Vector4(-0.5, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 4
+shader_parameter/base_scale_anim_driver = 6
+shader_parameter/color_gradient = SubResource("GradientTexture1D_q8602")
+shader_parameter/emission_intensity = 2.0000000298024
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(0.5, -0.25)
+shader_parameter/sample_edge_pow = Vector3(0, 3, 1)
+shader_parameter/shift_gradient_driver = 5
+shader_parameter/gradient_bias = 2
+shader_parameter/gbias_edge = Vector4(-1, 1, 0.5, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, 0)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 4
+shader_parameter/gb_str_driver = 0
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 0
+shader_parameter/chroma_samples = 10
+shader_parameter/chroma_offset = Vector2(0.035, 0.2)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 4.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rot_with = 2
+shader_parameter/vertex_displacement_mask = SubResource("GradientTexture2D_smhv1")
+shader_parameter/vertex_displacement_str = Vector3(0, 0, 0.25)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w1u3x"]
+noise_type = 4
+seed = 1
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1x67a"]
+noise = SubResource("FastNoiseLite_w1u3x")
+
+[sub_resource type="Gradient" id="Gradient_smhv1"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0.7607843, 0.90588236, 1, 0.29803923, 0.7176471, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_66cea"]
+gradient = SubResource("Gradient_smhv1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bhaqd"]
+noise_type = 2
+fractal_type = 0
+cellular_return_type = 4
+domain_warp_enabled = true
+domain_warp_amplitude = 120.0
+domain_warp_fractal_type = 0
+domain_warp_fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ox5kp"]
+noise = SubResource("FastNoiseLite_bhaqd")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuxvv"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 1
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_1x67a")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_ox5kp")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 1.0000000596048002
+shader_parameter/scroll_distortion = Vector4(-0.25, -0.5, -0.4, -0.25)
+shader_parameter/scale_distortion = Vector4(1, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/distort_str_driver = 6
+shader_parameter/distort_scroll_driver = 2
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 7
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(-0.1, 0, 0, 0)
+shader_parameter/base_scale_if = Vector4(0.15, 1, 1, 1)
+shader_parameter/base_pos_driver = 0
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = -0.15
+shader_parameter/feather_falloff = 4
+shader_parameter/feather_falloff_control = Vector3(0.5, 0.5, 8)
+shader_parameter/base_energy = Vector2(1, 1)
+shader_parameter/base_energy_driver = 0
+shader_parameter/base_mask = SubResource("NoiseTexture2D_1x67a")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(1, 1)
+shader_parameter/base_mask_edge = Vector4(0, 0.1, 1, 1.5)
+shader_parameter/base_mask_scroll = Vector4(0, 0.2, 0, 0)
+shader_parameter/base_mask_scale = Vector4(0.25, 1, 1, 1)
+shader_parameter/bm_pow_driver = 0
+shader_parameter/bm_edge_driver = 3
+shader_parameter/bm_scroll_driver = 0
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 5
+shader_parameter/bmag_edge = Vector4(-0.5, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 5
+shader_parameter/base_scale_anim_driver = 6
+shader_parameter/color_gradient = SubResource("GradientTexture1D_66cea")
+shader_parameter/emission_intensity = 3.0000000447036004
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(-1, 0)
+shader_parameter/sample_edge_pow = Vector3(0, 1, 1)
+shader_parameter/shift_gradient_driver = 0
+shader_parameter/gradient_bias = 5
+shader_parameter/gbias_edge = Vector4(0, 1, 0, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, 0)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 0
+shader_parameter/gb_str_driver = 0
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 0
+shader_parameter/chroma_samples = 0
+shader_parameter/chroma_offset = Vector2(0.01, 0.01)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 2.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rot_with = 0
+shader_parameter/vertex_displacement_str = Vector3(0, 0, 0)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_4g1cs"]
+size = Vector2(3, 3)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q8602"]
+noise_type = 4
+seed = 1
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qwt1a"]
+noise = SubResource("FastNoiseLite_q8602")
+
+[sub_resource type="Gradient" id="Gradient_66cea"]
+colors = PackedColorArray(0.57259744, 0.9999998, 0.9305932, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bhaqd"]
+gradient = SubResource("Gradient_66cea")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ox5kp"]
+noise_type = 2
+fractal_type = 0
+cellular_return_type = 4
+domain_warp_enabled = true
+domain_warp_amplitude = 120.0
+domain_warp_fractal_type = 0
+domain_warp_fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cuxvv"]
+noise = SubResource("FastNoiseLite_ox5kp")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_4g1cs"]
+offsets = PackedFloat32Array(0, 0.1, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_his3d"]
+gradient = SubResource("Gradient_4g1cs")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qoveh"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 1
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_his3d")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_cuxvv")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 1.0000000596048002
+shader_parameter/scroll_distortion = Vector4(-0.25, -0.5, -0.4, -0.25)
+shader_parameter/scale_distortion = Vector4(1, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/distort_str_driver = 6
+shader_parameter/distort_scroll_driver = 2
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 7
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(-0.07, 0, 0, 0)
+shader_parameter/base_scale_if = Vector4(0.15, 1, 1, 1)
+shader_parameter/base_pos_driver = 0
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = -0.28
+shader_parameter/feather_falloff = 3
+shader_parameter/feather_falloff_control = Vector3(0.1, 0.5, 0.5)
+shader_parameter/base_energy = Vector2(1, 1)
+shader_parameter/base_energy_driver = 0
+shader_parameter/base_mask = SubResource("NoiseTexture2D_qwt1a")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(1, 1)
+shader_parameter/base_mask_edge = Vector4(0, 0.1, 1, 1.5)
+shader_parameter/base_mask_scroll = Vector4(0, 0.2, 0, 0)
+shader_parameter/base_mask_scale = Vector4(0.25, 1, 1, 1)
+shader_parameter/bm_pow_driver = 0
+shader_parameter/bm_edge_driver = 3
+shader_parameter/bm_scroll_driver = 0
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 5
+shader_parameter/bmag_edge = Vector4(-0.5, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 5
+shader_parameter/base_scale_anim_driver = 6
+shader_parameter/color_gradient = SubResource("GradientTexture1D_bhaqd")
+shader_parameter/emission_intensity = 6.0000000894072
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(-1, 0)
+shader_parameter/sample_edge_pow = Vector3(0, 1, 1)
+shader_parameter/shift_gradient_driver = 0
+shader_parameter/gradient_bias = 5
+shader_parameter/gbias_edge = Vector4(0, 1, 0, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, 0)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 0
+shader_parameter/gb_str_driver = 0
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 0
+shader_parameter/chroma_samples = 0
+shader_parameter/chroma_offset = Vector2(0.01, 0.01)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 2.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rot_with = 0
+shader_parameter/vertex_displacement_str = Vector3(0, 0, 0)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6nask"]
+noise_type = 4
+seed = 1
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y2hfn"]
+noise = SubResource("FastNoiseLite_6nask")
+
+[sub_resource type="Gradient" id="Gradient_bhaqd"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ox5kp"]
+gradient = SubResource("Gradient_bhaqd")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cuxvv"]
+noise_type = 2
+fractal_type = 0
+cellular_return_type = 4
+domain_warp_enabled = true
+domain_warp_amplitude = 120.0
+domain_warp_fractal_type = 0
+domain_warp_fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4g1cs"]
+noise = SubResource("FastNoiseLite_cuxvv")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_his3d"]
+offsets = PackedFloat32Array(0, 0.1, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qoveh"]
+gradient = SubResource("Gradient_his3d")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2j1p"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 1
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_qoveh")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_4g1cs")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 1.0000000596048002
+shader_parameter/scroll_distortion = Vector4(-2, 3, -1, 2)
+shader_parameter/scale_distortion = Vector4(0.2, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 8)
+shader_parameter/distort_str_driver = 6
+shader_parameter/distort_scroll_driver = 2
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 7
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(-0.07, 0, -0.07, 0.04)
+shader_parameter/base_scale_if = Vector4(0.15, 0.8, 1, 1)
+shader_parameter/base_pos_driver = 2
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = -0.25
+shader_parameter/feather_falloff = 3
+shader_parameter/feather_falloff_control = Vector3(0.1, 0.5, 0.5)
+shader_parameter/base_energy = Vector2(1, 1)
+shader_parameter/base_energy_driver = 0
+shader_parameter/base_mask = SubResource("NoiseTexture2D_y2hfn")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(1, 0.4)
+shader_parameter/base_mask_edge = Vector4(0, 0.1, 1, 1.5)
+shader_parameter/base_mask_scroll = Vector4(0, 0.2, 0, 0)
+shader_parameter/base_mask_scale = Vector4(1, 1, 1, 1)
+shader_parameter/bm_pow_driver = 5
+shader_parameter/bm_edge_driver = 3
+shader_parameter/bm_scroll_driver = 0
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 5
+shader_parameter/bmag_edge = Vector4(0.2, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 4
+shader_parameter/base_scale_anim_driver = 6
+shader_parameter/color_gradient = SubResource("GradientTexture1D_ox5kp")
+shader_parameter/emission_intensity = 8.0000001192096
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(-1, -1.5)
+shader_parameter/sample_edge_pow = Vector3(0, 1, 1)
+shader_parameter/shift_gradient_driver = 3
+shader_parameter/gradient_bias = 5
+shader_parameter/gbias_edge = Vector4(0, 1, 0, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, 0)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 0
+shader_parameter/gb_str_driver = 0
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 0
+shader_parameter/chroma_samples = 0
+shader_parameter/chroma_offset = Vector2(0.01, 0.01)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 2.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rot_with = 0
+shader_parameter/vertex_displacement_str = Vector3(0, 0, 0)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lseew"]
+noise_type = 4
+seed = 1
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mu81s"]
+noise = SubResource("FastNoiseLite_lseew")
+
+[sub_resource type="Gradient" id="Gradient_unov8"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0.7607843, 0.90588236, 1, 0.29803923, 0.7176471, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1eyf4"]
+gradient = SubResource("Gradient_unov8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w5un2"]
+noise_type = 2
+fractal_type = 0
+cellular_return_type = 4
+domain_warp_enabled = true
+domain_warp_amplitude = 120.0
+domain_warp_fractal_type = 0
+domain_warp_fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mowp5"]
+noise = SubResource("FastNoiseLite_w5un2")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_1svjy"]
+offsets = PackedFloat32Array(0, 0.1, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ub6ga"]
+gradient = SubResource("Gradient_1svjy")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_huve6"]
+render_priority = 0
+shader = ExtResource("2_02mbb")
+shader_parameter/front_cull = false
+shader_parameter/back_cull = false
+shader_parameter/progress = 0.3
+shader_parameter/derive_progress = 1
+shader_parameter/ease_progress = 2
+shader_parameter/time_scale = 0.8
+shader_parameter/mesh_wide_mask = SubResource("GradientTexture2D_ub6ga")
+shader_parameter/apply_mwm = 0
+shader_parameter/final_base_pow = 1.0
+shader_parameter/polarize_uv = 1
+shader_parameter/polarize_settings = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/polar_rot_deg = 0.0
+shader_parameter/fisheye_uv = Vector2(0, 0)
+shader_parameter/fisheye_origin = Vector4(0.5, 0.5, 0.5, 0.5)
+shader_parameter/fisheye_uv_driver = 0
+shader_parameter/fisheye_origin_driver = 0
+shader_parameter/apply_distortion = 1
+shader_parameter/distort_texture = SubResource("NoiseTexture2D_mowp5")
+shader_parameter/distort_str = 0.10000004619372004
+shader_parameter/final_distort_str = 0.5000000521542001
+shader_parameter/scroll_distortion = Vector4(-0.25, -0.5, -0.2, -0.125)
+shader_parameter/scale_distortion = Vector4(1, 1, 1, 1)
+shader_parameter/polarize_distortion = Vector4(0.5, 0.5, 0.6, 1)
+shader_parameter/distort_str_driver = 6
+shader_parameter/distort_scroll_driver = 6
+shader_parameter/distort_scale_driver = 0
+shader_parameter/index_shift_distortion = false
+shader_parameter/base_preset = 7
+shader_parameter/custom_poly_base = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/custom_poly_base_point_count = 10
+shader_parameter/tweak_with_custom = false
+shader_parameter/base_shape_size = 1.0
+shader_parameter/base_rot_deg = 0.0
+shader_parameter/base_position_if = Vector4(-0.1, 0, 0, 0)
+shader_parameter/base_scale_if = Vector4(0.15, 1, 1, 1)
+shader_parameter/base_pos_driver = 0
+shader_parameter/base_scale_driver = 0
+shader_parameter/base_feather = 0.0
+shader_parameter/feather_falloff = 0
+shader_parameter/feather_falloff_control = Vector3(0.5, 0.5, 0.5)
+shader_parameter/base_energy = Vector2(1, 1)
+shader_parameter/base_energy_driver = 0
+shader_parameter/base_mask = SubResource("NoiseTexture2D_mu81s")
+shader_parameter/base_mask_control = 2
+shader_parameter/base_mask_pow = Vector2(1, 1)
+shader_parameter/base_mask_edge = Vector4(0, 0.1, 1, 1.5)
+shader_parameter/base_mask_scroll = Vector4(0, 0.2, 0, 0)
+shader_parameter/base_mask_scale = Vector4(0.25, 1, 1, 1)
+shader_parameter/bm_pow_driver = 0
+shader_parameter/bm_edge_driver = 3
+shader_parameter/bm_scroll_driver = 0
+shader_parameter/bm_scale_driver = 0
+shader_parameter/index_shift_mask = false
+shader_parameter/bm_auto_grad = 5
+shader_parameter/bmag_edge = Vector4(-0.5, 1, 0, 1)
+shader_parameter/bmag_str = Vector2(1, 1)
+shader_parameter/bmag_str_driver = 0
+shader_parameter/bmag_edge_driver = 0
+shader_parameter/base_scale_anim = 5
+shader_parameter/base_scale_anim_driver = 6
+shader_parameter/color_gradient = SubResource("GradientTexture1D_1eyf4")
+shader_parameter/emission_intensity = 1.0
+shader_parameter/chunky_color = 0
+shader_parameter/tweak_alpha = 0.0
+shader_parameter/shift_gradient = Vector2(-1, 0)
+shader_parameter/sample_edge_pow = Vector3(0, 1, 1)
+shader_parameter/shift_gradient_driver = 0
+shader_parameter/gradient_bias = 5
+shader_parameter/gbias_edge = Vector4(0, 1, 0, 1)
+shader_parameter/gbias_str = Vector2(1, 1)
+shader_parameter/gbias_shift = Vector2(0, 0)
+shader_parameter/gbias_rot = Vector2(0, 0)
+shader_parameter/gb_edge_driver = 0
+shader_parameter/gb_str_driver = 0
+shader_parameter/gb_shift_driver = 0
+shader_parameter/gb_rot_driver = 0
+shader_parameter/apply_chroma = 0
+shader_parameter/chroma_samples = 0
+shader_parameter/chroma_offset = Vector2(0.01, 0.01)
+shader_parameter/chroma_arrangement = 0
+shader_parameter/chroma_power = 2.0
+shader_parameter/tweak_chroma_weight = Vector4(0, 0, 0, 0)
+shader_parameter/enable_proximity_fade = 0
+shader_parameter/proximity_fade_distance = 0.0
+shader_parameter/proximity_fade_offset = 0.9
+shader_parameter/billboard = 0
+shader_parameter/camera_offset = 0.0
+shader_parameter/mesh_offset = Vector3(0, 0, 0)
+shader_parameter/final_mesh_offset = Vector3(0, 0, 0)
+shader_parameter/mesh_offset_driver = 0
+shader_parameter/index_rand_mesh_rot = Vector3(0, 0, 0)
+shader_parameter/maintain_irm_domain = false
+shader_parameter/mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rotation = Vector3(0, 0, 0)
+shader_parameter/animate_mesh_rot_with = 0
+shader_parameter/vertex_displacement_str = Vector3(0, 0, 0)
+shader_parameter/final_vertex_displacement_str = Vector3(1, 1, 1)
+shader_parameter/vert_disp_driver = 0
+shader_parameter/randomness = 0
+shader_parameter/randomness_seed = 0
+shader_parameter/index_shift_randomness = 0
+shader_parameter/disable_mask = false
+shader_parameter/disable_colorize = false
+shader_parameter/disable_transparency = false
+shader_parameter/isolate_base = 0
+
+[node name="ProceduralIdyllicSlash3D" type="Node3D"]
+
+[node name="VfxEnvSpatial" parent="." instance=ExtResource("1_iiakc")]
+metadata/_edit_lock_ = true
+
+[node name="Mage" parent="." instance=ExtResource("2_deeq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="FocusPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="CosmicSlash" type="Node3D" parent="."]
+transform = Transform3D(0.9396926, 0, 0.34202012, 0, 1, 0, -0.34202012, 0, 0.9396926, 0, 0, 0)
+
+[node name="SlashBase" type="MeshInstance3D" parent="CosmicSlash"]
+transform = Transform3D(-0.96037155, -0.048399642, -0.27448845, -0.27872294, 0.16676685, 0.94578147, 8.395834e-08, 0.9848078, -0.17364821, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_5iu0q")
+mesh = SubResource("QuadMesh_deeq0")
+skeleton = NodePath("../..")
+
+[node name="SlashHighlight" type="MeshInstance3D" parent="CosmicSlash"]
+transform = Transform3D(-0.96037155, -0.048399642, -0.27448845, -0.27872294, 0.16676685, 0.94578147, 8.395834e-08, 0.9848078, -0.17364821, 0, 0.02, 0)
+material_override = SubResource("ShaderMaterial_deeq0")
+mesh = SubResource("QuadMesh_deeq0")
+skeleton = NodePath("../..")
+
+[node name="SlashGlitter" type="MeshInstance3D" parent="CosmicSlash"]
+transform = Transform3D(-0.96037155, -0.048399642, -0.27448845, -0.27872294, 0.16676685, 0.94578147, 8.395834e-08, 0.9848078, -0.17364821, 0, 0.02, 0)
+material_override = SubResource("ShaderMaterial_smhv1")
+mesh = SubResource("QuadMesh_deeq0")
+skeleton = NodePath("../..")
+
+[node name="SlashCounterGlitter" type="MeshInstance3D" parent="CosmicSlash"]
+transform = Transform3D(-0.96037155, -0.048399642, -0.27448845, -0.27872294, 0.16676685, 0.94578147, 8.395834e-08, 0.9848078, -0.17364821, 0, 0.02, 0)
+material_override = SubResource("ShaderMaterial_02mbb")
+mesh = SubResource("QuadMesh_5iu0q")
+skeleton = NodePath("../..")
+
+[node name="SlashShadow" type="MeshInstance3D" parent="CosmicSlash"]
+transform = Transform3D(-0.96037155, -0.048399642, -0.27448845, -0.27872294, 0.16676685, 0.94578147, 8.395834e-08, 0.9848078, -0.17364821, 0, -0.02, 0)
+material_override = SubResource("ShaderMaterial_66cea")
+mesh = SubResource("QuadMesh_deeq0")
+skeleton = NodePath("../..")
+
+[node name="BulkShaderOverride" type="Node" parent="CosmicSlash" node_paths=PackedStringArray("fx_parents")]
+script = ExtResource("3_5iu0q")
+fx_parents = [NodePath("..")]
+override_progress = 0.3
+override_derive_progress = 0
+override_time_scale = 0.8
+live_updates = true
+metadata/_custom_type_script = "uid://unth20mj765s"
+
+[node name="OceanicSlash" type="Node3D" parent="."]
+visible = false
+
+[node name="SlashBase" type="MeshInstance3D" parent="OceanicSlash"]
+transform = Transform3D(-0.25202098, -0.88248056, 0.39713123, 0.8516507, -0.3971313, -0.3420201, 0.4595394, 0.25202087, 0.85165066, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_cuxvv")
+mesh = SubResource("QuadMesh_4g1cs")
+
+[node name="SlashHighlight" type="MeshInstance3D" parent="OceanicSlash"]
+transform = Transform3D(-0.25202093, -0.88248056, 0.3971313, 0.85165066, -0.39713126, -0.3420201, 0.45953944, 0.25202093, 0.85165066, 0, 0, 0)
+sorting_offset = 3.0
+material_override = SubResource("ShaderMaterial_qoveh")
+mesh = SubResource("QuadMesh_4g1cs")
+
+[node name="SlashFoam" type="MeshInstance3D" parent="OceanicSlash"]
+transform = Transform3D(-0.25202093, -0.88248056, 0.39713126, 0.85165066, -0.39713126, -0.3420201, 0.4595394, 0.2520209, 0.85165066, 0, 0, 0)
+sorting_offset = 2.0
+material_override = SubResource("ShaderMaterial_j2j1p")
+mesh = SubResource("QuadMesh_4g1cs")
+
+[node name="SlashShadow" type="MeshInstance3D" parent="OceanicSlash"]
+transform = Transform3D(-0.25202096, -0.88248056, 0.39713126, 0.8516507, -0.39713126, -0.3420201, 0.45953944, 0.2520209, 0.85165066, 0, 0, 0)
+sorting_offset = -1.0
+material_override = SubResource("ShaderMaterial_huve6")
+mesh = SubResource("QuadMesh_4g1cs")
+
+[node name="BulkShaderOverride" type="Node" parent="OceanicSlash" node_paths=PackedStringArray("fx_parents")]
+script = ExtResource("3_5iu0q")
+fx_parents = [NodePath("..")]
+override_progress = 0.3
+override_time_scale = 0.8
+live_updates = true
+metadata/_custom_type_script = "uid://unth20mj765s"
