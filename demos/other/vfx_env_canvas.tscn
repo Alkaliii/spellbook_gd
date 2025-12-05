@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciu3rxpryivtm"]
+
+[ext_resource type="Shader" uid="uid://cm4jbfpjaipmx" path="res://assets/shaders/dotted_grid.gdshader" id="1_pkxsm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twn6j"]
+shader = ExtResource("1_pkxsm")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.6431373, 0.6431373, 0.6431373, 1)
+shader_parameter/dot_color = Color(0.59717613, 0.5971761, 0.5971762, 1)
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
+[node name="VfxEnvCanvas" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(40, 40)
+repeat_times = 128
+
+[node name="Grid" type="ColorRect" parent="Parallax2D"]
+material = SubResource("ShaderMaterial_twn6j")
+offset_right = 40.0
+offset_bottom = 40.0

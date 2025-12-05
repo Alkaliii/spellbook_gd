@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcltoqgvpk4xm"]
+
+[ext_resource type="Shader" uid="uid://dvl4khourfk3" path="res://assets/shaders/prototype_grid.gdshader" id="1_u6sed"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eojt2"]
+render_priority = 0
+shader = ExtResource("1_u6sed")
+shader_parameter/world_uv = true
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 0
+shader_parameter/base_color = Color(0.6431373, 0.6431373, 0.6431373, 1)
+shader_parameter/metalic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.0010000000475
+shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.0050000002375
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_234hr"]
+size = Vector2(300, 300)
+
+[sub_resource type="Environment" id="Environment_8uv0x"]
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.6431373, 0.6431373, 0.6431373, 1)
+fog_density = 1.0
+
+[node name="VfxEnvSpatial" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.5
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+material_override = SubResource("ShaderMaterial_eojt2")
+mesh = SubResource("PlaneMesh_234hr")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(50, 1, 50)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8uv0x")
