@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://bitg173d813q5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iu0q"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.16862746, 0.16862746, 0.14901961, 1)
+grow = true
+grow_amount = 0.05
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02mbb"]
+next_pass = SubResource("StandardMaterial3D_5iu0q")
+diffuse_mode = 3
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+stencil_mode = 3
+stencil_flags = 2
+stencil_color = Color(0.16862746, 0.16862746, 0.14901961, 1)
+stencil_outline_thickness = 0.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_5iu0q"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_deeq0"]
+radius = 0.22
+height = 0.4
+is_hemisphere = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_lwwih"]
+radius = 0.22
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ur1c4"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.16862746, 0.16862746, 0.14901961, 1)
+grow = true
+grow_amount = 0.05
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_767iu"]
+next_pass = SubResource("StandardMaterial3D_ur1c4")
+diffuse_mode = 3
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+stencil_mode = 3
+stencil_flags = 2
+stencil_color = Color(0.16862746, 0.16862746, 0.14901961, 1)
+stencil_outline_thickness = 0.05
+
+[node name="Mage" type="Node3D"]
+
+[node name="Geometry" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_02mbb")
+cast_shadow = 0
+
+[node name="Head" type="CSGMesh3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("SphereMesh_5iu0q")
+
+[node name="BodyTop" type="CSGMesh3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+mesh = SubResource("SphereMesh_deeq0")
+
+[node name="BodyBottom" type="CSGMesh3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+mesh = SubResource("SphereMesh_lwwih")
+
+[node name="FixHeadOutline" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, 0)
+visible = false
+cast_shadow = 0
+mesh = SubResource("SphereMesh_5iu0q")
+material = SubResource("StandardMaterial3D_767iu")
