@@ -13,3 +13,15 @@ config_version=5
 config/name="spellbook_gd"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://demos/": "green",
+"res://src/": "blue"
+}
+
+[rendering]
+
+viewport/hdr_2d=true
