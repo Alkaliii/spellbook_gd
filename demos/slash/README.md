@@ -4,8 +4,8 @@
 This directory contains demonstrations for stylized slashes.
 
 📖 Documentation for the shaders and scripts utilized in these demonstrations can be found here:
-- [Procedural Idyllic Slash](https://github.com/Alkaliii/spellbook-gd/wiki/Procedural-Idyllic-Slash#procedural-idyllic-slash)
-- make a page for BulkShaderOverride
+- [Procedural Idyllic Slash](https://github.com/Alkaliii/spellbook-gd/wiki/Procedural-Idyllic-Slash)
+- [BulkShaderOverride](https://github.com/Alkaliii/spellbook-gd/wiki/BulkShaderOverride)
 
 ![psi_cosmic](https://github.com/user-attachments/assets/5efa2eee-7705-41c3-99f4-f88ff002e135)
 ![psi_cosmic2D](https://github.com/user-attachments/assets/be4726da-303e-48cd-889a-385374c1b396)
