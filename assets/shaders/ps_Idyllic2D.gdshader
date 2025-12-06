@@ -101,9 +101,9 @@ uniform int base_pos_driver : hint_enum("None","Time","Progress","prg Ease In","
 uniform int base_scale_driver : hint_enum("None","Time","Progress","prg Ease In","prg Ease Out",
 "prg Ease In Out","prg Ease Out In","prg Custom A","prg Custom B","prg Custom C","prg Custom D") = 0;
 
-group_uniforms SHAPE.BASE_APPERANCE;
+group_uniforms SHAPE.BASE_APPEARANCE;
 uniform float base_feather = 0.0;
-uniform int feather_falloff : hint_enum("Hermite","Pixiecubic","Exponetial","Sigmoid²ˣ","Plateauhalo");
+uniform int feather_falloff : hint_enum("Hermite","Pixiecubic","Exponential","Sigmoid²ˣ","Plateauhalo");
 uniform vec3 feather_falloff_control = vec3(0.5);
 uniform vec2 base_energy = vec2(1.0,1.0); // use this to fade out
 uniform int base_energy_driver : hint_enum("None","Time","Progress","prg Ease In","prg Ease Out",
