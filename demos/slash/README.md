@@ -3,9 +3,12 @@
 # Slash Demonstrations
 This directory contains demonstrations for stylized slashes.
 
-📖 Documentation for the shaders utilized in these demonstrations can be found here:
-- (put a link here)
+📖 Documentation for the shaders and scripts utilized in these demonstrations can be found here:
+- [Procedural Idyllic Slash](https://github.com/Alkaliii/spellbook-gd/wiki/Procedural-Idyllic-Slash#procedural-idyllic-slash)
+- make a page for BulkShaderOverride
 
 ![psi_cosmic](https://github.com/user-attachments/assets/5efa2eee-7705-41c3-99f4-f88ff002e135)
 ![psi_cosmic2D](https://github.com/user-attachments/assets/be4726da-303e-48cd-889a-385374c1b396)
 
+## Info
+`procedural_idyllic_slash2D.tscn` and `procedural_idyllic_slash3D.tscn` contain two untimed effects. They look alright but can look even better when more care is taken to time the appearance and speed of each layer within the effect. Something you should consider when attempting to make your own effects. You can better explore these effects by locating the `BulkShaderOverride` node and using the tools it provides.
